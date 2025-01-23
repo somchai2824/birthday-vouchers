@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Heart, Gift, Sparkles } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
 
 const BirthdayVouchers = () => {
   const [claimedVouchers, setClaimedVouchers] = useState(new Set());
@@ -57,26 +56,27 @@ const BirthdayVouchers = () => {
         {/* Vouchers Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {vouchers.map((voucher) => (
-            <Card key={voucher.id} className="hover:shadow-lg transition-shadow">
-              <CardContent className="p-6">
-                <div className="text-4xl mb-4">{voucher.icon}</div>
-                <h3 className="text-xl font-bold mb-2 text-pink-600">
-                  {voucher.title}
-                </h3>
-                <p className="text-gray-600 mb-4">{voucher.description}</p>
-                <button
-                  onClick={() => handleClaim(voucher.id)}
-                  disabled={claimedVouchers.has(voucher.id)}
-                  className={`w-full py-2 px-4 rounded-lg transition-colors ${
-                    claimedVouchers.has(voucher.id)
-                      ? "bg-gray-300 text-gray-600"
-                      : "bg-pink-500 hover:bg-pink-600 text-white"
-                  }`}
-                >
-                  {claimedVouchers.has(voucher.id) ? "Claimed! 💝" : "Claim Now! 🎁"}
-                </button>
-              </CardContent>
-            </Card>
+            <div 
+              key={voucher.id} 
+              className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6"
+            >
+              <div className="text-4xl mb-4">{voucher.icon}</div>
+              <h3 className="text-xl font-bold mb-2 text-pink-600">
+                {voucher.title}
+              </h3>
+              <p className="text-gray-600 mb-4">{voucher.description}</p>
+              <button
+                onClick={() => handleClaim(voucher.id)}
+                disabled={claimedVouchers.has(voucher.id)}
+                className={`w-full py-2 px-4 rounded-lg transition-colors ${
+                  claimedVouchers.has(voucher.id)
+                    ? "bg-gray-300 text-gray-600"
+                    : "bg-pink-500 hover:bg-pink-600 text-white"
+                }`}
+              >
+                {claimedVouchers.has(voucher.id) ? "Claimed! 💝" : "Claim Now! 🎁"}
+              </button>
+            </div>
           ))}
         </div>
 
